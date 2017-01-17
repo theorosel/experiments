@@ -1,0 +1,120 @@
+/*
+ * Dice
+ */
+.dice {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    will-change: transform;
+    transition: transform 0.4s ease-in-out;
+}
+
+.inner-dice {
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    background: linear-gradient(to bottom, #c10000 0%, #b30000 95%, #990000 96%, #990000 100%);
+    box-shadow: 0px 2px 10px 0px rgba(19,41,21,0.7);
+    border: 1px solid #8d2208;
+    position: relative;
+    transform: scale(0.75);
+    transform-origin: 50%,50%;
+    cursor: pointer;
+    will-change: transform;
+
+
+    &:hover {
+        transform: scale(0.78);
+    }
+
+
+    &.dice-1 {
+        .dot-7 {
+            opacity: 1;
+        }
+    }
+
+    &.dice-2 {
+        .dot-3, .dot-4 {
+            opacity: 1;
+        }
+    }
+
+    &.dice-3 {
+        .dot-3, .dot-4, .dot-7 {
+            opacity: 1;
+        }
+    }
+
+    &.dice-4 {
+        .dot-1, .dot-3, .dot-4, .dot-6 {
+            opacity: 1;
+        }
+    }
+
+    &.dice-5 {
+        .dot-1, .dot-3, .dot-4, .dot-6, .dot-7 {
+            opacity: 1;
+        }
+    }
+
+    &.dice-6 {
+        .dot-1, .dot-2, .dot-3, .dot-4, .dot-5, .dot-6{
+            opacity: 1;
+        }
+    }
+}
+
+
+
+
+/*
+ * Dot
+*/
+.dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #FFF;
+    position: absolute;
+}
+
+.dot-1 {
+    left: 10px;
+    top:  10px;
+}
+
+.dot-2 {
+    left: 10px;
+    top:  40px;
+}
+
+.dot-3 {
+    left: 10px;
+    bottom: 10px;
+}
+
+.dot-4 {
+    right: 10px;
+    top: 10px;
+}
+
+.dot-5 {
+    right: 10px;
+    top:  40px;
+}
+
+.dot-6 {
+    right: 10px;
+    bottom: 10px;
+}
+
+.dot-7 {
+    left: 40px;
+    top: 40px;
+}
+
+
+.dot-1, .dot-2, .dot-3, .dot-4, .dot-5, .dot-6, .dot-7 {
+    opacity: 0;
+}

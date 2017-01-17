@@ -1,0 +1,21 @@
+/* Table
+   ========================================================================== */
+
+.u-table {
+  display: table;
+}
+
+.u-table-cell,
+.u-table-cell--center,
+.u-table-cell--middle {
+  display: table-cell;
+}
+
+.u-table-cell--center,
+.u-table-cell--middle {
+  vertical-align: middle;
+}
+
+.u-table-cell--center {
+  text-align: center;
+}

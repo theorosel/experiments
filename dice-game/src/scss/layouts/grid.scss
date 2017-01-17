@@ -1,0 +1,183 @@
+.game {
+    position: relative;
+    width: 600px;
+    height: 700px;
+    margin: auto;
+    border: 1px solid #FFF;
+}
+
+
+/*
+ * s-position
+ */
+.s-0 {
+    transform: translate(0px, -100px)!important;
+}
+.s-1 {
+    transform: translate(100px, -100px)!important;
+}
+.s-2 {
+    transform: translate(200px, -100px)!important;
+}
+.s-3 {
+    transform: translate(300px, -100px)!important;
+}
+.s-4 {
+    transform: translate(400px, -100px)!important;
+}
+
+
+/*
+ * x-0
+ */
+.x-0.y-0 {
+    transform: translate(0px, 0px);
+}
+.x-0.y-1 {
+    transform: translate(0px, 100px);
+}
+.x-0.y-2 {
+    transform: translate(0px, 200px);
+}
+.x-0.y-3 {
+    transform: translate(0px, 300px);
+}
+.x-0.y-4 {
+    transform: translate(0px, 400px);
+}
+.x-0.y-5 {
+    transform: translate(0px, 500px);
+}
+.x-0.y-6 {
+    transform: translate(0px, 600px);
+}
+
+
+/*
+ * x-1
+ */
+.x-1.y-0 {
+    transform: translate(100px, 0px);
+}
+.x-1.y-1 {
+    transform: translate(100px, 100px);
+}
+.x-1.y-2 {
+    transform: translate(100px, 200px);
+}
+.x-1.y-3 {
+    transform: translate(100px, 300px);
+}
+.x-1.y-4 {
+    transform: translate(100px, 400px);
+}
+.x-1.y-5 {
+    transform: translate(100px, 500px);
+}
+.x-1.y-6 {
+    transform: translate(100px, 600px);
+}
+
+
+/*
+* x-2
+*/
+.x-2.y-0 {
+    transform: translate(200px, 0px);
+}
+.x-2.y-1 {
+    transform: translate(200px, 100px);
+}
+.x-2.y-2 {
+    transform: translate(200px, 200px);
+}
+.x-2.y-3 {
+    transform: translate(200px, 300px);
+}
+.x-2.y-4 {
+    transform: translate(200px, 400px);
+}
+.x-2.y-5 {
+    transform: translate(200px, 500px);
+}
+.x-2.y-6 {
+    transform: translate(200px, 600px);
+}
+
+
+/*
+ * x-3
+ */
+.x-3.y-0 {
+    transform: translate(300px, 0px);
+}
+.x-3.y-1 {
+    transform: translate(300px, 100px);
+}
+.x-3.y-2 {
+    transform: translate(300px, 200px);
+}
+.x-3.y-3 {
+    transform: translate(300px, 300px);
+}
+.x-3.y-4 {
+    transform: translate(300px, 400px);
+}
+.x-3.y-5 {
+    transform: translate(300px, 500px);
+}
+.x-3.y-6 {
+    transform: translate(300px, 600px);
+}
+
+
+/*
+ * x-4
+ */
+.x-4.y-0 {
+    transform: translate(400px, 0px);
+}
+.x-4.y-1 {
+    transform: translate(400px, 100px);
+}
+.x-4.y-2 {
+    transform: translate(400px, 200px);
+}
+.x-4.y-3 {
+    transform: translate(400px, 300px);
+}
+.x-4.y-4 {
+    transform: translate(400px, 400px);
+}
+.x-4.y-5 {
+    transform: translate(400px, 500px);
+}
+.x-4.y-6 {
+    transform: translate(400px, 600px);
+}
+
+
+/*
+ * x-5
+ */
+.x-5.y-0 {
+    transform: translate(500px, 0px);
+}
+.x-5.y-1 {
+    transform: translate(500px, 100px);
+}
+.x-5.y-2 {
+    transform: translate(500px, 200px);
+}
+.x-5.y-3 {
+    transform: translate(500px, 300px);
+}
+.x-5.y-4 {
+    transform: translate(500px, 400px);
+}
+.x-5.y-5 {
+    transform: translate(500px, 500px);
+}
+.x-5.y-6 {
+    transform: translate(500px, 600px);
+}
