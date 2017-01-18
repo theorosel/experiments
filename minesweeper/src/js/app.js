@@ -63,9 +63,59 @@ function Minesweeper (element) {
                 var y   = element.getAttribute('data-y');
 
                 self.boxes[y][x].is_mined = true;
+
+                if (!self.state) {
+                    self.state = true;
+                    self.set_bomb(element);
+                }
             });
         }
     }
+
+
+    /*
+     * set_bomb()
+     * Called in this.init()
+     * Put bombs randomly all around the map
+     */
+    this.set_bomb = function(element) {
+        var self = this;
+        var $x = element.getAttribute('data-x');
+        var $y = element.getAttribute('data-y');
+
+        for (var i = 0; i < this.bombs_number; i++) {
+            var x, y;
+            do {
+                x = Math.floor(Math.random()* this.columns_size);
+                y = Math.floor(Math.random()* this.rows_size);
+            } while (this.is_mined($x, $y, x, y));
+
+            self.boxes[x][y].is_mined = true;
+            self.boxes[x][y].obj.style.background = 'black';
+            console.log(self.boxes);
+        }
+
+    }
+
+
+    /*
+     * is_mined()
+     * Called in this.set_bomb()
+     * Check if bomb already exist in the box
+     */
+    this.is_mined = function($x, $y, x, y) {
+        $x = null;
+        $y = null;
+
+        if ($x == x && $y == y) {
+            return true
+        }
+        else {
+            return this.boxes[y][x].is_mined;
+        }
+    }
+
+
 }
 
 
