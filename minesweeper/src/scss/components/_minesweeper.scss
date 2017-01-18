@@ -19,14 +19,27 @@
 .minesweeper {
     position: absolute;
     left: 50%;
-    transform: translateX(-50%);
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
     font-size: 0;
+    border: 2px inset #666a79;
+    background-color: #38405a;
+    cursor: pointer;
 }
 
 .minesweeper-box {
     display: inline-block;
-    width: 50px;
-    height: 50px;
-    background: red;
-    border: 0.2px solid #000;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%);
+    border: 2px outset #38405a;
+    
+    
+    &:hover {
+        background: linear-gradient(135deg, #2f5e96 0%,#4095db 50%,#3688cc 51%,#94c1e3 100%);
+    }
+    
+    &:active {
+        border: 2px inset #38405a;
+    }
 }
