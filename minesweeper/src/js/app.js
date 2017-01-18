@@ -141,40 +141,150 @@ function Minesweeper (element) {
             if (self.boxes[y+1][x+1].is_mined == true){
                 count++
             }
-            console.log(count);
-            self.boxes[y][x].obj.classList.add(count);
         }
 
         else if (x == 0 && y == this.rows_size - 1) {
             self.boxes[y][x].obj.style.background = 'yellow';
+            if (self.boxes[y-1][x].is_mined == true){
+                count++
+            }
+            if (self.boxes[y][x+1].is_mined == true){
+                count++
+            }
+            if (self.boxes[y-1][x+1].is_mined == true){
+                count++
+            }
         }
 
         else if (x == this.columns_size - 1 && y == 0) {
             self.boxes[y][x].obj.style.background = 'yellow';
+            if (self.boxes[y+1][x].is_mined == true){
+                count++
+            }
+            if (self.boxes[y][x-1].is_mined == true){
+                count++
+            }
+            if (self.boxes[y+1][x-1].is_mined == true){
+                count++
+            }
         }
 
         else if (x == this.columns_size - 1 && y == this.rows_size -1) {
             self.boxes[y][x].obj.style.background = 'yellow';
+            if (self.boxes[y-1][x].is_mined == true){
+                count++
+            }
+            if (self.boxes[y][x-1].is_mined == true){
+                count++
+            }
+            if (self.boxes[y-1][x-1].is_mined == true){
+                count++
+            }
         }
 
         else if (x == 0) {
             self.boxes[y][x].obj.style.background = 'yellow';
+            if (self.boxes[y-1][x].is_mined == true){
+                count++
+            }
+            if (self.boxes[y+1][x].is_mined == true){
+                count++
+            }
+            if (self.boxes[y-1][x+1].is_mined == true){
+                count++
+            }
+            if (self.boxes[y+1][x+1].is_mined == true){
+                count++
+            }
+            if (self.boxes[y][x+1].is_mined == true){
+                count++
+            }
         }
 
         else if (y == 0) {
             self.boxes[y][x].obj.style.background = 'yellow';
+            if (self.boxes[y][x-1].is_mined == true){
+                count++
+            }
+            if (self.boxes[y][x+1].is_mined == true){
+                count++
+            }
+            if (self.boxes[y+1][x-1].is_mined == true){
+                count++
+            }
+            if (self.boxes[y+1][x+1].is_mined == true){
+                count++
+            }
+            if (self.boxes[y+1][x].is_mined == true){
+                count++
+            }
         }
 
         else if (x == this.rows_size - 1) {
             self.boxes[y][x].obj.style.background = 'yellow';
+            if (self.boxes[y-1][x].is_mined == true){
+                count++
+            }
+            if (self.boxes[y+1][x].is_mined == true){
+                count++
+            }
+            if (self.boxes[y-1][x-1].is_mined == true){
+                count++
+            }
+            if (self.boxes[y+1][x-1].is_mined == true){
+                count++
+            }
+            if (self.boxes[y][x-1].is_mined == true){
+                count++
+            }
         }
 
         else if (y == this.columns_size - 1) {
             self.boxes[y][x].obj.style.background = 'yellow';
+            if (self.boxes[y][x-1].is_mined == true){
+                count++
+            }
+            if (self.boxes[y][x+1].is_mined == true){
+                count++
+            }
+            if (self.boxes[y-1][x-1].is_mined == true){
+                count++
+            }
+            if (self.boxes[y-1][x+1].is_mined == true){
+                count++
+            }
+            if (self.boxes[y-1][x].is_mined == true){
+                count++
+            }
         }
       
         else if (x > 0 && x < this.rows_size - 1 && y > 0 && y < this.columns_size - 1) {
             self.boxes[y][x].obj.style.background = 'yellow';
+            if (self.boxes[y][x-1].is_mined == true){
+                count++
+            }
+            if (self.boxes[y][x+1].is_mined == true){
+                count++
+            }
+            if (self.boxes[y-1][x].is_mined == true){
+                count++
+            }
+            if (self.boxes[y+1][x].is_mined == true){
+                count++
+            }
+            if (self.boxes[y-1][x+1].is_mined == true){
+                count++
+            }
+            if (self.boxes[y-1][x-1].is_mined == true){
+                count++
+            }
+            if (self.boxes[y+1][x+1].is_mined == true){
+                count++
+            }
+            if (self.boxes[y+1][x-1].is_mined == true){
+                count++
+            }
+          console.log(count);
         }
         
     }
