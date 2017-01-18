@@ -15,7 +15,7 @@ function Game (element) {
     this.pos_y          = [0, 1, 2, 3, 4, 5, 6];
     this.positions      = [];
     this.saved_dices    = [];
-
+    console.log(this.dices);
 
     this.init = function(element) {
 
@@ -44,10 +44,11 @@ function Game (element) {
                 do {
                     x = this.alea(this.pos_x);
                     y = this.alea(this.pos_y);
-
+                    
                     var dice_pos = 'x:' + x + 'y:' + y;
 
-                } while (this.take_pos(dice_pos));
+                }
+                while (this.positions.indexOf(dice_pos) !== -1);
 
                 // Increment positions array
                 this.positions.push(dice_pos);
@@ -73,7 +74,7 @@ function Game (element) {
      * take_pos (dice_pos : string)
      * Check if a couple of positions x, y already exists
      */
-    this.take_pos = function(dice_pos) {
+    /*this.take_pos = function(dice_pos) {
         for (var i = 1; i < this.positions.length; i++) {
 
             if (dice_pos[i] === dice_pos) {
@@ -81,8 +82,8 @@ function Game (element) {
             }
         }
         return false;
-    }
-
+    }*/
+    
 
     /*
      * save_dice (el : object )
@@ -181,7 +182,7 @@ game.$el.run_button.addEventListener('click', function () {
 
     setTimeout(function() {
         game.run();
-    }, 1000);
+    }, 500);
 });
 
 // Run game when press enter or space
@@ -191,7 +192,7 @@ addEventListener('keypress', function (key_to_press) {
 
         setTimeout(function() {
             game.run();
-        }, 1000);
+        }, 500);
     }
 });
 
