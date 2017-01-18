@@ -125,14 +125,24 @@ function Minesweeper (element) {
     this.explore = function(element) {
         var self  = this;
         var count = 0;
-        var x     = element.getAttribute('data-x');
-        var y     = element.getAttribute('data-y');
+        var x     = parseInt(element.getAttribute('data-x'));
+        var y     = parseInt(element.getAttribute('data-y'));
 
         // console.log(this.rows_size);
         // console.log(self.boxes[y][x]);
         if (x == 0 && y == 0) {
             self.boxes[y][x].obj.style.background = 'yellow';
-
+            if (self.boxes[y+1][x].is_mined == true){
+                count++
+            }
+            if (self.boxes[y][x+1].is_mined == true){
+                count++
+            }
+            if (self.boxes[y+1][x+1].is_mined == true){
+                count++
+            }
+            console.log(count);
+            self.boxes[y][x].obj.classList.add(count);
         }
 
         else if (x == 0 && y == this.rows_size - 1) {
@@ -162,6 +172,11 @@ function Minesweeper (element) {
         else if (y == this.columns_size - 1) {
             self.boxes[y][x].obj.style.background = 'yellow';
         }
+      
+        else if (x > 0 && x < this.rows_size - 1 && y > 0 && y < this.columns_size - 1) {
+            self.boxes[y][x].obj.style.background = 'yellow';
+        }
+        
     }
 
 
