@@ -62,11 +62,12 @@ function Minesweeper (element) {
                 var x   = element.getAttribute('data-x');
                 var y   = element.getAttribute('data-y');
 
-                self.boxes[y][x].is_mined = true;
-
                 if (!self.state) {
                     self.state = true;
                     self.set_bomb(element);
+                }
+                else {
+                    self.explore(element);
                 }
             });
         }
@@ -92,7 +93,7 @@ function Minesweeper (element) {
 
             self.boxes[x][y].is_mined = true;
             self.boxes[x][y].obj.style.background = 'black';
-            console.log(self.boxes);
+            // console.log(self.boxes);
         }
 
     }
@@ -112,6 +113,54 @@ function Minesweeper (element) {
         }
         else {
             return this.boxes[y][x].is_mined;
+        }
+    }
+
+
+    /*
+     * explore()
+     * Called in this.init()
+     * Explore each box around the box clicked
+     */
+    this.explore = function(element) {
+        var self  = this;
+        var count = 0;
+        var x     = element.getAttribute('data-x');
+        var y     = element.getAttribute('data-y');
+
+        // console.log(this.rows_size);
+        // console.log(self.boxes[y][x]);
+        if (x == 0 && y == 0) {
+            self.boxes[y][x].obj.style.background = 'yellow';
+
+        }
+
+        else if (x == 0 && y == this.rows_size - 1) {
+            self.boxes[y][x].obj.style.background = 'yellow';
+        }
+
+        else if (x == this.columns_size - 1 && y == 0) {
+            self.boxes[y][x].obj.style.background = 'yellow';
+        }
+
+        else if (x == this.columns_size - 1 && y == this.rows_size -1) {
+            self.boxes[y][x].obj.style.background = 'yellow';
+        }
+
+        else if (x == 0) {
+            self.boxes[y][x].obj.style.background = 'yellow';
+        }
+
+        else if (y == 0) {
+            self.boxes[y][x].obj.style.background = 'yellow';
+        }
+
+        else if (x == this.rows_size - 1) {
+            self.boxes[y][x].obj.style.background = 'yellow';
+        }
+
+        else if (y == this.columns_size - 1) {
+            self.boxes[y][x].obj.style.background = 'yellow';
         }
     }
 
