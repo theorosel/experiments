@@ -74,6 +74,7 @@ function Minesweeper (element) {
                 }
                 else {
                     // self.explore(element);
+                    self.box_check(element);
                 }
                 console.log(self.boxes[y][x]);
             });
@@ -208,17 +209,52 @@ function Minesweeper (element) {
 
 
     /*
+     * box_check()
+     * Called in this.init()
+     * Create value for box according bombs number around it
+     */
+    this.box_check = function(element) {
+        var x = element.getAttribute('data-x');
+        var y = element.getAttribute('data-y');
+
+        if (this.boxes[y][x].is_mined) {
+            element.classList.add('minesweeper-mined');
+        }
+        else if (this.boxes[y][x].value > 0) {
+            element.classList.add('minesweeper-safe');
+        }
+        else if (this.boxes[y][x].value == 0) {
+            element.classList.add('minesweeper-safe');
+        }
+
+        this.write_value(element, x, y);
+    }
+
+
+    /*
      * create_value()
      * Called in this.init()
      * Create value for box according bombs number around it
      */
     this.create_value = function() {
-        var self = this;
         for (var y = 0; y < this.boxes.length; y++) {
             for (var x = 0; x < this.boxes.length; x++) {
-                self.explore(this.boxes[y][x], x, y);
+                this.explore(this.boxes[y][x], x, y);
             }
         }
+    }
+
+
+    /*
+     * write_value()
+     * Called in box_check()
+     * Get value of box according bombs number around it
+     * and write it in box DOM element
+     */
+    this.write_value = function(element, x, y) {
+        var count = element.firstChild;
+        console.log(count);
+        count.innerHTML = this.boxes[y][x].value;
     }
 }
 
