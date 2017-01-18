@@ -1,6 +1,6 @@
 .game {
     position: relative;
-    width: 600px;
+    width: 700px;
     height: 700px;
     margin: auto;
     border: 1px solid #FFF;
@@ -180,4 +180,30 @@
 }
 .x-5.y-6 {
     transform: translate(500px, 600px);
+}
+
+
+/*
+ * x-6
+ */
+.x-6.y-0 {
+    transform: translate(600px, 0px);
+}
+.x-6.y-1 {
+    transform: translate(600px, 100px);
+}
+.x-6.y-2 {
+    transform: translate(600px, 200px);
+}
+.x-6.y-3 {
+    transform: translate(600px, 300px);
+}
+.x-6.y-4 {
+    transform: translate(600px, 400px);
+}
+.x-6.y-5 {
+    transform: translate(600px, 500px);
+}
+.x-6.y-6 {
+    transform: translate(600px, 600px);
 }
