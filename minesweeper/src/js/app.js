@@ -100,7 +100,7 @@ function Minesweeper (element) {
             } while (this.is_mined($x, $y, x, y));
 
             self.boxes[x][y].is_mined = true;
-            self.boxes[x][y].obj.style.background = 'black';
+            // self.boxes[x][y].obj.style.background = 'black';
         }
 
     }
