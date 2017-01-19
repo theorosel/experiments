@@ -67,6 +67,10 @@ function Game (element) {
             }
         }
 
+        // Sounds effects
+        var sound = document.querySelector( '#soundEffect' );
+
+        sound.innerHTML = '<audio autoplay class="audioSound" src="assets/sound/dice_sound.mp3"></audio>';
     };
 
 
@@ -182,7 +186,7 @@ game.$el.run_button.addEventListener('click', function () {
 
     setTimeout(function() {
         game.run();
-    }, 500);
+    }, 400);
 });
 
 // Run game when press enter or space
@@ -192,7 +196,7 @@ addEventListener('keypress', function (key_to_press) {
 
         setTimeout(function() {
             game.run();
-        }, 500);
+        }, 400);
     }
 });
 

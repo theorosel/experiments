@@ -103,6 +103,15 @@ gulp.task('fonts', function() {
 })
 
 
+// Sounds
+gulp.task('sounds', function() {
+    return gulp.src(config.src + 'sound/**/*')
+        .pipe(gulp.dest(config.dist + 'assets/sound'))
+        .pipe(connect.reload())
+        .pipe(notify('Sounds updated : <%= file.relative %> !'));
+})
+
+
 // Watch
 gulp.task('watch', function() {
     gulp.watch([config.src + 'js/*.js'], ['javascript']);
@@ -110,11 +119,12 @@ gulp.task('watch', function() {
     gulp.watch([config.src + '*.html'], ['html']);
     gulp.watch([config.src + 'img/*'], ['images']);
     gulp.watch([config.src + 'font/*'], ['fonts']);
+    gulp.watch([config.src + 'sound/*'], ['sounds']);
 })
 
 
 // Build
-gulp.task('build', ['html', 'sass', 'javascript', 'images', 'fonts'], function() {})
+gulp.task('build', ['html', 'sass', 'javascript', 'images', 'fonts', 'sounds'], function() {})
 
 
 // Default
