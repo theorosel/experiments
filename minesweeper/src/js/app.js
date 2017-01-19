@@ -69,17 +69,21 @@ function Minesweeper (element) {
                 var x   = element.getAttribute('data-x');
                 var y   = element.getAttribute('data-y');
 
-                if (!self.state) {
-                    self.state = true;
-                    self.set_bomb(element);
-                    self.create_value();
-                    self.box_check(element);
+                if (!self.boxes[y][x].disabled) {
+
+                    if (!self.state) {
+                        self.state = true;
+                        self.set_bomb(element);
+                        self.create_value();
+                        self.box_check(element);
+                    }
+
+                    else {
+                        self.box_check(element);
+                    }
+                    // console.log(self.boxes[y][x]);
                 }
 
-                else {
-                    self.box_check(element);
-                }
-                console.log(self.boxes[y][x]);
             });
         }
     }
@@ -116,7 +120,7 @@ function Minesweeper (element) {
         $x = parseInt($x);
         $y = parseInt($y);
 
-        console.log($x, $y)
+        // console.log($x, $y)
         if (x == $x && y == $y) {
             return true
         }
@@ -219,18 +223,70 @@ function Minesweeper (element) {
         var x = element.getAttribute('data-x');
         var y = element.getAttribute('data-y');
 
-        if (this.boxes[y][x].is_mined) {
-            element.classList.add('minesweeper-mined');
-            this.reveal_mines();
+        if (!this.boxes[y][x].disabled) {
+            if (this.boxes[y][x].is_mined) {
+                element.classList.add('minesweeper-mined');
+                this.reveal_mines();
+            }
+            else if (this.boxes[y][x].value > 0) {
+                element.classList.add('minesweeper-safe');
+            }
+            else if (this.boxes[y][x].value == 0) {
+                element.classList.add('minesweeper-safe');
+                this.box_check_around(element, x, y);
+            }
+
+            this.write_value(element, x, y);
+            this.boxes[y][x].disabled = true;
         }
-        else if (this.boxes[y][x].value > 0) {
-            element.classList.add('minesweeper-safe');
-        }
-        else if (this.boxes[y][x].value == 0) {
-            element.classList.add('minesweeper-safe');
+    }
+
+
+    /*
+     * box_check_around()
+     * Called in this.box_check()
+     * Check box around clicked box
+     */
+    this.box_check_around = function(element, x, y) {
+        var x = parseInt(x);
+        var y = parseInt(y);
+
+
+        if (!this.boxes[y][x].disabled) {
+
+            if (x == 0 && y == 0) {
+                if (this.boxes[y+1][x].value == 0){
+                    console.log('yo');
+                    this.boxes[y+1][x].disabled = true;
+                };
+
+            }
+            else if (x == 0 && y == this.rows_size - 1) {
+            }
+
+            else if (x == this.columns_size - 1 && y == 0) {
+            }
+
+            else if (x == this.columns_size - 1 && y == this.rows_size -1) {
+            }
+
+            else if (x == 0) {
+            }
+
+            else if (y == 0) {
+            }
+
+            else if (x == this.rows_size - 1) {
+            }
+
+            else if (y == this.columns_size - 1) {
+            }
+
+            else if (x > 0 && x < this.rows_size - 1 && y > 0 && y < this.columns_size - 1) {
+            //   console.log(count);
+            }
         }
 
-        this.write_value(element, x, y);
     }
 
 
@@ -281,6 +337,8 @@ function Minesweeper (element) {
                 else if (!this.boxes[y][x].obj.classList.contains('minesweeper-mined')) {
                     this.boxes[y][x].obj.classList.add('minesweeper-safe');
                 }
+
+                this.boxes[y][x].disabled = true;
             }
         }
     }
