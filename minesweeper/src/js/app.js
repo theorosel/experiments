@@ -49,10 +49,12 @@ function Minesweeper (element) {
                     x : x,
                     y : y,
                     is_mined : false,
-                    value : null
+                    value : null,
+                    disabled : false
                 }
                 row.push(box);
             }
+
             this.boxes.push(row);
             this.$el.minesweeper.appendChild($row);
         }
@@ -71,9 +73,10 @@ function Minesweeper (element) {
                     self.state = true;
                     self.set_bomb(element);
                     self.create_value();
+                    self.box_check(element);
                 }
+
                 else {
-                    // self.explore(element);
                     self.box_check(element);
                 }
                 console.log(self.boxes[y][x]);
@@ -89,9 +92,8 @@ function Minesweeper (element) {
      */
     this.set_bomb = function(element) {
         var self = this;
-        var $x = element.getAttribute('data-x');
-        var $y = element.getAttribute('data-y');
-
+        var $x = parseInt(element.getAttribute('data-x'));
+        var $y = parseInt(element.getAttribute('data-y'));
         for (var i = 0; i < this.bombs_number; i++) {
             var x, y;
             do {
@@ -100,7 +102,6 @@ function Minesweeper (element) {
             } while (this.is_mined($x, $y, x, y));
 
             self.boxes[x][y].is_mined = true;
-            // self.boxes[x][y].obj.style.background = 'black';
         }
 
     }
@@ -112,10 +113,11 @@ function Minesweeper (element) {
      * Check if bomb already exist in the box
      */
     this.is_mined = function($x, $y, x, y) {
-        $x = null;
-        $y = null;
+        $x = parseInt($x);
+        $y = parseInt($y);
 
-        if ($x == x && $y == y) {
+        console.log($x, $y)
+        if (x == $x && y == $y) {
             return true
         }
         else {
@@ -219,6 +221,7 @@ function Minesweeper (element) {
 
         if (this.boxes[y][x].is_mined) {
             element.classList.add('minesweeper-mined');
+            this.reveal_mines();
         }
         else if (this.boxes[y][x].value > 0) {
             element.classList.add('minesweeper-safe');
@@ -238,6 +241,7 @@ function Minesweeper (element) {
      */
     this.create_value = function() {
         for (var y = 0; y < this.boxes.length; y++) {
+
             for (var x = 0; x < this.boxes.length; x++) {
                 this.explore(this.boxes[y][x], x, y);
             }
@@ -254,8 +258,34 @@ function Minesweeper (element) {
     this.write_value = function(element, x, y) {
         var count = element.firstChild;
         console.log(count);
-        count.innerHTML = this.boxes[y][x].value;
+        if (this.boxes[y][x].value > 0) {
+            count.innerHTML = this.boxes[y][x].value;
+        }
     }
+
+
+    /*
+     * reveal_mines()
+     * Called in box_check()
+     * Reveal all box of the map
+     */
+    this.reveal_mines = function() {
+        for (var y = 0; y < this.boxes.length; y++) {
+            for (var x = 0; x < this.boxes.length; x++) {
+
+                if (this.boxes[y][x].is_mined) {
+                    console.log(this.boxes[y][x]);
+                    this.boxes[y][x].obj.classList.add('minesweeper-mined');
+                }
+
+                else if (!this.boxes[y][x].obj.classList.contains('minesweeper-mined')) {
+                    this.boxes[y][x].obj.classList.add('minesweeper-safe');
+                }
+            }
+        }
+    }
+
+
 }
 
 
