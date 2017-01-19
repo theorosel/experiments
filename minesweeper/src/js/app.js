@@ -152,19 +152,16 @@ function Minesweeper (element) {
                 if (self.boxes[y][x+1].is_mined){count++}
                 if (self.boxes[y-1][x+1].is_mined){count++}
             }
-
             else if (x == this.columns_size - 1 && y == 0) {
                 if (self.boxes[y+1][x].is_mined){count++}
                 if (self.boxes[y][x-1].is_mined){count++}
                 if (self.boxes[y+1][x-1].is_mined){count++}
             }
-
             else if (x == this.columns_size - 1 && y == this.rows_size -1) {
                 if (self.boxes[y-1][x].is_mined){count++}
                 if (self.boxes[y][x-1].is_mined){count++}
                 if (self.boxes[y-1][x-1].is_mined){count++}
             }
-
             else if (x == 0) {
                 if (self.boxes[y-1][x].is_mined){count++}
                 if (self.boxes[y+1][x].is_mined){count++}
@@ -172,7 +169,6 @@ function Minesweeper (element) {
                 if (self.boxes[y+1][x+1].is_mined){count++}
                 if (self.boxes[y][x+1].is_mined){count++}
             }
-
             else if (y == 0) {
                 if (self.boxes[y][x-1].is_mined){count++}
                 if (self.boxes[y][x+1].is_mined){count++}
@@ -180,7 +176,6 @@ function Minesweeper (element) {
                 if (self.boxes[y+1][x+1].is_mined){count++}
                 if (self.boxes[y+1][x].is_mined){count++}
             }
-
             else if (x == this.rows_size - 1) {
                 if (self.boxes[y-1][x].is_mined){count++}
                 if (self.boxes[y+1][x].is_mined){count++}
@@ -188,7 +183,6 @@ function Minesweeper (element) {
                 if (self.boxes[y+1][x-1].is_mined){count++}
                 if (self.boxes[y][x-1].is_mined){count++}
             }
-
             else if (y == this.columns_size - 1) {
                 if (self.boxes[y][x-1].is_mined){count++}
                 if (self.boxes[y][x+1].is_mined){count++}
@@ -196,7 +190,6 @@ function Minesweeper (element) {
                 if (self.boxes[y-1][x+1].is_mined){count++}
                 if (self.boxes[y-1][x].is_mined){count++}
             }
-
             else if (x > 0 && x < this.rows_size - 1 && y > 0 && y < this.columns_size - 1) {
                 if (self.boxes[y][x-1].is_mined){count++}
                 if (self.boxes[y][x+1].is_mined){count++}
@@ -220,8 +213,8 @@ function Minesweeper (element) {
      * Create value for box according bombs number around it
      */
     this.box_check = function(element) {
-        var x = element.getAttribute('data-x');
-        var y = element.getAttribute('data-y');
+        var x = parseInt(element.getAttribute('data-x'));
+        var y = parseInt(element.getAttribute('data-y'));
 
         if (!this.boxes[y][x].disabled) {
             if (this.boxes[y][x].is_mined) {
@@ -233,7 +226,7 @@ function Minesweeper (element) {
             }
             else if (this.boxes[y][x].value == 0) {
                 element.classList.add('minesweeper-safe');
-                this.box_check_around(element, x, y);
+                this.box_check_around(x, y);
             }
 
             this.write_value(element, x, y);
@@ -247,46 +240,92 @@ function Minesweeper (element) {
      * Called in this.box_check()
      * Check box around clicked box
      */
-    this.box_check_around = function(element, x, y) {
-        var x = parseInt(x);
-        var y = parseInt(y);
+    this.box_check_around = function(x, y) {
 
+        console.log(x, y);
 
         if (!this.boxes[y][x].disabled) {
 
             if (x == 0 && y == 0) {
-                if (this.boxes[y+1][x].value == 0){
-                    console.log('yo');
-                    this.boxes[y+1][x].disabled = true;
-                };
-
+                if (this.boxes[y+1][x].value == 0){this.box_analyse(x, y+1);}
+                if (this.boxes[y][x+1].value == 0){this.box_analyse(x+1, y);}
+                if (this.boxes[y+1][x+1].value == 0){this.box_analyse(x+1, y+1);}
             }
             else if (x == 0 && y == this.rows_size - 1) {
+                if (this.boxes[y-1][x].value == 0){this.box_analyse(x, y-1);}
+                if (this.boxes[y][x+1].value == 0){this.box_analyse(x+1, y);}
+                if (this.boxes[y-1][x+1].value == 0){this.boxe_analyse(x+1, y-1);}
             }
-
             else if (x == this.columns_size - 1 && y == 0) {
+                if (this.boxes[y+1][x].value == 0){this.box_analyse(x, y+1);}
+                if (this.boxes[y][x-1].value == 0){this.box_analyse(x-1, y);}
+                if (this.boxes[y+1][x-1].value == 0){this.box_analyse(x-1, y+1);}
             }
-
             else if (x == this.columns_size - 1 && y == this.rows_size -1) {
+                if (this.boxes[y-1][x].value == 0){this.box_analyse(x, y-1);}
+                if (this.boxes[y][x-1].value == 0){this.box_analyse(x-1, y);}
+                if (this.boxes[y-1][x-1].value == 0){this.boxe_analyse(x-1, y-1);}
             }
-
             else if (x == 0) {
+                if (this.boxes[y-1][x].value == 0){this.box_analyse(x, y-1);}
+                if (this.boxes[y+1][x].value == 0){this.box_analyse(x, y+1);}
+                if (this.boxes[y-1][x+1].value == 0){this.box_analyse(x+1, y-1);}
+                if (this.boxes[y+1][x+1].value == 0){this.box_analyse(x+1, y+1);}
+                if (this.boxes[y][x+1].value == 0){this.box_analyse(x+1, y);}
             }
-
             else if (y == 0) {
+                if (this.boxes[y][x-1].value == 0){this.box_analyse(x-1, y);}
+                if (this.boxes[y][x+1].value == 0){this.box_analyse(x+1, y);}
+                if (this.boxes[y+1][x-1].value == 0){this.box_analyse(x-1, y+1);}
+                if (this.boxes[y+1][x+1].value == 0){this.box_analyse(x+1, y+1);}
+                if (this.boxes[y+1][x].value == 0){this.box_analyse(x, y+1);}
             }
-
             else if (x == this.rows_size - 1) {
+                if (this.boxes[y-1][x].value == 0){this.box_analyse(x, y-1);}
+                if (this.boxes[y+1][x].value == 0){this.box_analyse(x, y+1);}
+                if (this.boxes[y-1][x-1].value == 0){this.box_analyse(x-1, y-1);}
+                if (this.boxes[y+1][x-1].value == 0){this.box_analyse(x-1, y+1);}
+                if (this.boxes[y][x-1].value == 0){this.box_analyse(x-1, y);}
             }
-
             else if (y == this.columns_size - 1) {
+                if (this.boxes[y][x-1].value == 0){this.box_analyse(x-1, y);}
+                if (this.boxes[y][x+1].value == 0){this.box_analyse(x+1, y);}
+                if (this.boxes[y-1][x-1].value == 0){this.box_analyse(x-1, y-1);}
+                if (this.boxes[y-1][x+1].value == 0){this.box_analyse(x+1, y-1);}
+                if (this.boxes[y-1][x].value == 0){this.box_analyse(x, y-1);}
             }
-
             else if (x > 0 && x < this.rows_size - 1 && y > 0 && y < this.columns_size - 1) {
-            //   console.log(count);
+                if (this.boxes[y][x-1].value == 0){this.box_analyse(x-1, y);}
+                if (this.boxes[y][x+1].value == 0){this.box_analyse(x+1, y);}
+                if (this.boxes[y-1][x].value == 0){this.box_analyse(x, y-1);}
+                if (this.boxes[y+1][x].value == 0){this.box_analyse(x, y+1);}
+                if (this.boxes[y-1][x+1].value == 0){this.box_analyse(x+1, y-1);}
+                if (this.boxes[y-1][x-1].value == 0){this.box_analyse(x-1, y-1);}
+                if (this.boxes[y+1][x+1].value == 0){this.box_analyse(x+1, y+1);}
+                if (this.boxes[y+1][x-1].value == 0){this.box_analyse(x-1, y+1);}
             }
         }
 
+
+    }
+
+
+    /*
+     * boxe_analyse()
+     * Called in this.init()
+     * Create value for box according bombs number around it
+     */
+    this.box_analyse = function(x, y) {
+        // console.log(x, y);
+
+        if (!this.boxes[y][x].disabled && !this.boxes[y][x].is_mined && !this.boxes[y][x].value > 0 ) {
+            console.log(x, y);
+            this.boxes[y][x].disabled == true;
+            this.boxes[y][x].obj.classList.add('minesweeper-safe');
+        }
+        else {
+            this.box_check_around(x, y);
+        }
     }
 
 
