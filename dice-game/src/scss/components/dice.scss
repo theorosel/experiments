@@ -7,6 +7,7 @@
     position: absolute;
     will-change: transform;
     transition: transform 0.4s ease-in-out;
+    transform: translate(300px, -200px);
 }
 
 .inner-dice {
