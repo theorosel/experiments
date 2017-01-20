@@ -85,6 +85,11 @@ function Minesweeper (element) {
                 }
 
             });
+          
+            this.$el.boxes[i].addEventListener('contextmenu', function (event) {
+                var element = event.srcElement;
+                element.classList.toggle('minesweeper-flag');
+            });
         }
     }
 
