@@ -88,8 +88,24 @@ function Minesweeper (element) {
           
             this.$el.boxes[i].addEventListener('contextmenu', function (event) {
                 var element = event.srcElement;
-                element.classList.toggle('minesweeper-flag');
+                var x       = element.getAttribute('data-x');
+                var y       = element.getAttribute('data-y');
+              if  (!element.classList.contains('minesweeper-flag')) {
+                self.boxes[y][x].obj.classList.add('minesweeper-flag');
+                self.boxes[y][x].disabled = true;
+                
+                
+              }
+              else {
+                self.boxes[y][x].obj.classList.remove('minesweeper-flag');
+                self.boxes[y][x].disabled = false;
+                
+              }
+              
+
+              
             });
+          
         }
     }
 
