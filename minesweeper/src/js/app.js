@@ -16,8 +16,10 @@ function Minesweeper (element) {
     this.rows_size           = 10;
     this.columns_size        = 10;
     this.bombs_number        = 8;
+    this.bombs_under_flags   = this.bombs_number;
 
 this.$el.bombs_counter.innerHTML = "Bombs counter : " + this.bombs_number ;
+  
     /*
      * Init ()
      * Called when DOM content is fully loaded
@@ -94,12 +96,14 @@ this.$el.bombs_counter.innerHTML = "Bombs counter : " + this.bombs_number ;
               if  (!element.classList.contains('minesweeper-flag')) {
                 self.boxes[y][x].obj.classList.add('minesweeper-flag');
                 self.boxes[y][x].disabled = true;
-                self.$el.bombs_counter.innerHTML = "Bombs counter : " + parseInt(self.bombs_number - 1);
+                self.bombs_under_flags--;
+                self.$el.bombs_counter.innerHTML = "Bombs counter : " + self.bombs_under_flags;
               }
               else {
                 self.boxes[y][x].obj.classList.remove('minesweeper-flag');
                 self.boxes[y][x].disabled = false;
-                self.$el.bombs_counter.innerHTML = "Bombs counter : " + parseInt(self.bombs_number - 1);
+                self.bombs_under_flags++;
+                self.$el.bombs_counter.innerHTML = "Bombs counter : " + self.bombs_under_flags;
               }
               
 
