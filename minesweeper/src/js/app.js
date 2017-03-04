@@ -376,7 +376,7 @@ function Minesweeper (element) {
     /*
      * reveal_mines()
      * Called in box_check()
-     * Reveal all box of the map
+     * Reveal and disabled all box of the map
      */
     this.reveal_mines = function() {
         for (var y = 0; y < this.boxes.length; y++) {
