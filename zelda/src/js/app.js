@@ -22,7 +22,7 @@ function App (element) {
 
         self.loop(self.direction);
 
-    }, 100);
+    }, 50);
 
 
     /*
@@ -80,13 +80,18 @@ function App (element) {
 
 
         $zelda.setAttribute("class", "zelda");
+
         $zelda.style.top = pos_y + 'px';
         $zelda.style.left = pos_x + 'px';
+        $zelda.classList.add ('zelda');
+        $zelda.classList.add ('bottom');
 
         this.$el.game_area.appendChild($zelda);
         this.$el.zelda = this.$el.container.querySelector('.zelda');
         this.pos_x     = pos_x;
         this.pos_y     = pos_y;
+
+        // console.log(this.$el.zelda.getAttribute('class').split(' ')[1]);
     }
 
 
@@ -99,24 +104,33 @@ function App (element) {
      */
     this.loop = function(direction) {
 
+        var $zelda        = this.$el.zelda,
+            current_class = $zelda.getAttribute('class').split(' ')[1];
 
         if (direction == 'top') {
             this.top();
+            this.$el.zelda.classList.remove (current_class);
+            this.$el.zelda.classList.add ('top');
         }
 
         else if (direction == 'right') {
             this.right();
+            this.$el.zelda.classList.remove (current_class);
+            this.$el.zelda.classList.add('right');
+            // this.$el.zelda.style.backgroundPosition = "left -65px";
         }
 
         else if (direction == 'down') {
             this.down();
+            this.$el.zelda.classList.remove (current_class);
+            this.$el.zelda.classList.add ('down');
         }
 
         else if (direction == 'left') {
             this.left();
+            this.$el.zelda.classList.remove (current_class);
+            this.$el.zelda.classList.add ('left');
         }
-
-        // console.log(this.$el.zelda.getBoundingClientRect());
     }
 
 
@@ -127,7 +141,7 @@ function App (element) {
      */
     this.top = function() {
 
-        this.pos_y -= 10;
+        this.pos_y -= 5;
         this.pos_x;
         this.$el.zelda.style.top = this.pos_y +'px';
     }
@@ -141,7 +155,7 @@ function App (element) {
     this.right = function() {
 
         console.log('right');
-        this.pos_x += 10;
+        this.pos_x += 5;
         this.$el.zelda.style.left = this.pos_x +'px';
     }
 
@@ -154,7 +168,7 @@ function App (element) {
     this.down = function() {
 
         console.log('down');
-        this.pos_y += 10;
+        this.pos_y += 5;
         this.$el.zelda.style.top = this.pos_y +'px';
     }
 
@@ -167,7 +181,7 @@ function App (element) {
     this.left = function() {
 
         console.log('left');
-        this.pos_x -= 10;
+        this.pos_x -= 5;
         this.$el.zelda.style.left = this.pos_x +'px';
     }
 }
