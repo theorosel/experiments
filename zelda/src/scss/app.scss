@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+
+/*
+ * Reset
+ */
+@import 'base/reset';
+
+
+/*
+ * Tools
+ */
+@import 'tools/variables';
+
+
+/*
+ * Bases
+ */
+@import 'base/base';
+
+
+/*
+ * Components
+ */
+@import 'components/zelda';
+
+
+
+/*
+ * Layouts
+ */
+@import 'layouts/header';
+@import 'layouts/game-area';

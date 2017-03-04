@@ -1,0 +1,10 @@
+.zelda{
+    background-image:url('/assets/img/zelda.png');
+    width:32px;
+    height:32px;
+    display:block;
+    background-repeat: no-repeat;
+    position:absolute;
+    transition: all 0.2s ease-in-out;
+    transform: translateX(Opx) translateY(0px);
+}
