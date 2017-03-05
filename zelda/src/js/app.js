@@ -7,14 +7,19 @@ function App (element) {
     this.$el.score      = this.$el.container.querySelector('.score');
     this.$el.game_area  = this.$el.container.querySelector('.game-area');
     this.$el.zelda      = null;
+    this.$el.ressource  = null;
 
     // $Data
     this.score          = 0;
     this.speed          = null;
     this.direction      = null;
+
     this.pos_x          = 0;
     this.pos_y          = 0;
     this.movement       = 1;
+
+    this.ressource_x    = 1;
+    this.ressource_y    = 1;
 
     var self = this;
 
@@ -23,8 +28,9 @@ function App (element) {
 
         self.loop(self.direction);
         self.zelda_movement(self.movement);
+        self.check_collision();
 
-    }, 500);
+    }, 100);
 
 
     /*
@@ -59,6 +65,8 @@ function App (element) {
      */
     this.init = function() {
 
+        this.$el.score.innerText = this.score;
+
         this.create_zelda();
         this.ressource_pop();
     }
@@ -77,9 +85,7 @@ function App (element) {
             pos_x  = Math.floor(Math.random() * long),
             pos_y  = Math.floor(Math.random() * larg);
 
-
         $zelda.setAttribute("class", "zelda");
-
         $zelda.style.top = pos_y + 'px';
         $zelda.style.left = pos_x + 'px';
 
@@ -104,16 +110,58 @@ function App (element) {
             pos_x      = Math.floor(Math.random() * long),
             pos_y      = Math.floor(Math.random() * larg);
 
-
         $ressource.setAttribute("class", "ressource");
-
         $ressource.style.top = pos_y + 'px';
         $ressource.style.left = pos_x + 'px';
 
         this.$el.game_area.appendChild($ressource);
-        this.$el.zelda = this.$el.container.querySelector('.zelda');
-        this.pos_x     = pos_x;
-        this.pos_y     = pos_y;
+        this.$el.ressource = this.$el.container.querySelector('.ressource');
+
+        this.ressource_x     = pos_x;
+        this.ressource_y     = pos_y;
+    }
+
+
+    /*
+     * check_collision()
+     * Called in window.setInterval()
+     * Check if zelda passe on the ressource
+     */
+    this.check_collision = function() {
+
+        var zelda_x = this.pos_x,
+            zelda_y = this.pos_y,
+            ress    = this.$el.ressource,
+            ress_x  = this.ressource_x,
+            ress_y  = this.ressource_y;
+
+        if ((zelda_x > (ress_x - 12)) && (zelda_x < (ress_x + 12)) && (zelda_y > (ress_y - 12)) && (zelda_y < (ress_y + 12)))
+			{
+                this.score_increment();
+                this.take_ressource(ress);
+                this.ressource_pop();
+			}
+    }
+
+
+    /*
+     * take_ressource()
+     * Called in check_collision()
+     * Destroy ressource which is recovered
+     */
+    this.take_ressource = function(ress) {
+        this.$el.game_area.removeChild(ress);
+    }
+
+
+    /*
+     * score_increment()
+     * Called in check_collision()
+     * Increment score
+     */
+    this.score_increment = function(ress) {
+        this.score ++;
+        this.$el.score.innerText = this.score;
     }
 
 
@@ -163,7 +211,6 @@ function App (element) {
     this.top = function() {
 
         this.pos_y -= 5;
-        this.pos_x;
         this.$el.zelda.style.top = this.pos_y +'px';
     }
 
@@ -175,7 +222,6 @@ function App (element) {
      */
     this.right = function() {
 
-        console.log('right');
         this.pos_x += 5;
         this.$el.zelda.style.left = this.pos_x +'px';
     }
@@ -188,7 +234,6 @@ function App (element) {
      */
     this.down = function() {
 
-        console.log('down');
         this.pos_y += 5;
         this.$el.zelda.style.top = this.pos_y +'px';
     }
@@ -201,7 +246,6 @@ function App (element) {
      */
     this.left = function() {
 
-        console.log('left');
         this.pos_x -= 5;
         this.$el.zelda.style.left = this.pos_x +'px';
     }
@@ -223,7 +267,6 @@ function App (element) {
         }
     }
 }
-
 
 
 var app = new App(document.querySelector('.app'));
