@@ -1,3 +1,6 @@
+/*
+ * $zelda
+ */
 .zelda{
     background-image:url('/assets/img/zelda.png');
     background-size: auto;
@@ -8,18 +11,34 @@
     position:absolute;
 }
 
-.zelda.top {
-    background-position: left -96px;
-}
 
-.zelda.right {
-    background-position: left -65px;
-}
+/*
+ * $down direction movements
+ */
+.dir_down_1{ background-position: 0px 0px; }
+.dir_down_2{ background-position: -32px 0px; }
+.dir_down_3{ background-position: -64px 0px; }
 
-.zelda.left {
-    background-position: left -34px;
-}
 
-.zelda.down {
-    background-position: left 0px;
-}
+/*
+ * $left direction movements
+ */
+.dir_left_1{ background-position: 0px -33px; }
+.dir_left_2{ background-position: -32px -33px; }
+.dir_left_3{ background-position: -64px -33px; }
+
+
+/*
+ * $right direction movements
+ */
+.dir_right_1{ background-position: 0px -64px; }
+.dir_right_2{ background-position: -32px -64px; }
+.dir_right_3{ background-position: -64px -64px; }
+
+
+/*
+ * $top direction movements
+ */
+.dir_top_1{ background-position: 0px -96px; }
+.dir_top_2{ background-position: -32px -96px; }
+.dir_top_3{ background-position: -64px -96px; }

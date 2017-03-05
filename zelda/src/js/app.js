@@ -14,6 +14,7 @@ function App (element) {
     this.direction      = null;
     this.pos_x          = 0;
     this.pos_y          = 0;
+    this.movement       = 1;
 
     var self = this;
 
@@ -21,8 +22,9 @@ function App (element) {
     window.setInterval( function(){
 
         self.loop(self.direction);
+        self.zelda_movement(self.movement);
 
-    }, 50);
+    }, 500);
 
 
     /*
@@ -51,8 +53,6 @@ function App (element) {
     });
 
 
-
-
     /*
      * init()
      * Called when DOM is fully loaded
@@ -60,9 +60,8 @@ function App (element) {
     this.init = function() {
 
         this.create_zelda();
+        this.ressource_pop();
     }
-
-
 
 
     /*
@@ -83,59 +82,81 @@ function App (element) {
 
         $zelda.style.top = pos_y + 'px';
         $zelda.style.left = pos_x + 'px';
-        $zelda.classList.add ('zelda');
-        $zelda.classList.add ('bottom');
 
         this.$el.game_area.appendChild($zelda);
         this.$el.zelda = this.$el.container.querySelector('.zelda');
         this.pos_x     = pos_x;
         this.pos_y     = pos_y;
-
-        // console.log(this.$el.zelda.getAttribute('class').split(' ')[1]);
     }
 
 
+    /*
+     * ressource_pop()
+     * Called in ...
+     * Create ressource and place it randomly on the map when
+     * the previous is recovered
+     */
+    this.ressource_pop = function() {
+
+        var $ressource = document.createElement('div'),
+            long       = this.$el.game_area.getBoundingClientRect().width,
+            larg       = this.$el.game_area.getBoundingClientRect().height,
+            pos_x      = Math.floor(Math.random() * long),
+            pos_y      = Math.floor(Math.random() * larg);
+
+
+        $ressource.setAttribute("class", "ressource");
+
+        $ressource.style.top = pos_y + 'px';
+        $ressource.style.left = pos_x + 'px';
+
+        this.$el.game_area.appendChild($ressource);
+        this.$el.zelda = this.$el.container.querySelector('.zelda');
+        this.pos_x     = pos_x;
+        this.pos_y     = pos_y;
+    }
 
 
     /*
-     * create_zelda()
-     * Called in this.init()
-     * Create zelda and place it randomly on the map
+     * loop(direction : string)
+     * Called window.setInterval
+     * Moving zelda according to the direction
      */
     this.loop = function(direction) {
 
         var $zelda        = this.$el.zelda,
             current_class = $zelda.getAttribute('class').split(' ')[1];
 
+
         if (direction == 'top') {
             this.top();
             this.$el.zelda.classList.remove (current_class);
-            this.$el.zelda.classList.add ('top');
+            this.$el.zelda.classList.add ('dir_top_' + this.movement + '');
         }
 
         else if (direction == 'right') {
             this.right();
             this.$el.zelda.classList.remove (current_class);
-            this.$el.zelda.classList.add('right');
+            this.$el.zelda.classList.add('dir_right_' + this.movement + '');
             // this.$el.zelda.style.backgroundPosition = "left -65px";
         }
 
         else if (direction == 'down') {
             this.down();
             this.$el.zelda.classList.remove (current_class);
-            this.$el.zelda.classList.add ('down');
+            this.$el.zelda.classList.add ('dir_down_' + this.movement + '');
         }
 
         else if (direction == 'left') {
             this.left();
             this.$el.zelda.classList.remove (current_class);
-            this.$el.zelda.classList.add ('left');
+            this.$el.zelda.classList.add ('dir_left_' + this.movement + '');
         }
     }
 
 
     /*
-     * this.top();
+     * top();
      * Called in this.loop()
      * Move Zelda according to the direction
      */
@@ -148,7 +169,7 @@ function App (element) {
 
 
     /*
-     * this.right();
+     * right();
      * Called in this.loop()
      * Move Zelda according to the direction
      */
@@ -161,7 +182,7 @@ function App (element) {
 
 
     /*
-     * this.down();
+     * down();
      * Called in this.loop()
      * Move Zelda according to the direction
      */
@@ -174,7 +195,7 @@ function App (element) {
 
 
     /*
-     * this.left();
+     * left();
      * Called in this.loop()
      * Move Zelda according to the direction
      */
@@ -184,10 +205,26 @@ function App (element) {
         this.pos_x -= 5;
         this.$el.zelda.style.left = this.pos_x +'px';
     }
+
+
+    /*
+     * zelda_movement(movement : number);
+     * Called window.setInterval()
+     * Increment movement to change zelda's movements
+     */
+    this.zelda_movement = function(movement) {
+
+        if (self.movement >= 3) {
+            self.movement = 1;
+        }
+
+        else {
+            self.movement += 1;
+        }
+    }
 }
 
 
 
 var app = new App(document.querySelector('.app'));
-
 app.init();
