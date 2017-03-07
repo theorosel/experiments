@@ -19,7 +19,7 @@ function Minesweeper (element) {
     this.bombs_under_flags   = this.bombs_number;
 
 this.$el.bombs_counter.innerHTML = "Bombs counter : " + this.bombs_number ;
-  
+
     /*
      * Init ()
      * Called when DOM content is fully loaded
@@ -88,28 +88,27 @@ this.$el.bombs_counter.innerHTML = "Bombs counter : " + this.bombs_number ;
                 }
 
             });
-          
+
             this.$el.boxes[i].addEventListener('contextmenu', function (event) {
                 var element = event.srcElement;
                 var x       = element.getAttribute('data-x');
                 var y       = element.getAttribute('data-y');
-              if  (!element.classList.contains('minesweeper-flag')) {
-                self.boxes[y][x].obj.classList.add('minesweeper-flag');
-                self.boxes[y][x].disabled = true;
-                self.bombs_under_flags--;
-                self.$el.bombs_counter.innerHTML = "Bombs counter : " + self.bombs_under_flags;
-              }
-              else {
-                self.boxes[y][x].obj.classList.remove('minesweeper-flag');
-                self.boxes[y][x].disabled = false;
-                self.bombs_under_flags++;
-                self.$el.bombs_counter.innerHTML = "Bombs counter : " + self.bombs_under_flags;
-              }
-              
 
-              
+                if  (!element.classList.contains('minesweeper-flag')) {
+                  self.boxes[y][x].obj.classList.add('minesweeper-flag');
+                  self.boxes[y][x].disabled = true;
+                  self.bombs_under_flags--;
+                  self.$el.bombs_counter.innerHTML = "Bombs counter : " + self.bombs_under_flags;
+                }
+                else {
+                  self.boxes[y][x].obj.classList.remove('minesweeper-flag');
+                  self.boxes[y][x].disabled = false;
+                  self.bombs_under_flags++;
+                  self.$el.bombs_counter.innerHTML = "Bombs counter : " + self.bombs_under_flags;
+                }
+
+                event.preventDefault();
             });
-          
         }
     }
 
@@ -257,6 +256,7 @@ this.$el.bombs_counter.innerHTML = "Bombs counter : " + this.bombs_number ;
 
             else if (this.boxes[y][x].value > 0) {
                 element.classList.add('minesweeper-safe');
+                this.box_check_around(x, y);
             }
 
             else if (this.boxes[y][x].value == 0) {
